@@ -54,40 +54,30 @@ const GeneralIssueForm = ({ onAdd }) => {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      // 🔥 PARENT FUNCTION CALL
-      await onAdd({
-        title,
-        category,
-        location,
-        severity,
-        description,
-        image,
-      });
+    await onAdd({
+      title,
+      category,
+      location,
+      severity,
+      description,
+      image,
+    });
 
-      alert("✅ Issue submitted successfully");
-
-      // reset form
-      setTitle("");
-      setCategory("");
-      setLocation("");
-      setSeverity("");
-      setDescription("");
-      setImage(null);
-      setPreview(null);
-    } catch (err) {
-      console.error(err);
-      alert("❌ Failed to submit issue");
-    } finally {
-      setLoading(false);
-    }
+    setTitle("");
+    setCategory("");
+    setLocation("");
+    setSeverity("");
+    setDescription("");
+    setImage(null);
+    setPreview(null);
+    setLoading(false);
   };
 
   return (
     <form className="hc-form" onSubmit={submit}>
-      <h3>Report Issue (Image Supported)</h3>
+      <h3>Report General Issue</h3>
 
       <input type="file" accept="image/*" onChange={handleImageUpload} />
 

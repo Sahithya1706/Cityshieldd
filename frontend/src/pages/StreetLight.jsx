@@ -49,12 +49,40 @@ const StreetLight = () => {
     }
   };
 
-  return (
-    <div className="page-bg">
-      <div className="main-card">
-        <Navbar />
+  // DELETE ALL
+  const deleteAllFaults = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete ALL street light reports?"
+    );
+    if (!confirmDelete) return;
 
-        <div className="streetlight-page">
+    try {
+      await API.delete("/street-lights");
+      fetchFaults();
+    } catch (err) {
+      console.error("Delete all error:", err);
+      alert("Failed to delete street light reports");
+    }
+  };
+
+  return (
+    <>
+      <Navbar />
+
+      {/* FULL SCREEN STREET LIGHT PAGE */}
+      <div className="streetlight-full">
+        <div className="streetlight-header">
+          <h2>Street Light Management</h2>
+          <p>Report, track, and resolve street light issues</p>
+
+          <div className="streetlight-actions">
+            <button className="danger-btn" onClick={deleteAllFaults}>
+              🗑️ Delete All Reports
+            </button>
+          </div>
+        </div>
+
+        <div className="streetlight-layout">
           <StreetLightForm onAdd={addFault} />
           <StreetLightList
             faults={faults}
@@ -62,7 +90,7 @@ const StreetLight = () => {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

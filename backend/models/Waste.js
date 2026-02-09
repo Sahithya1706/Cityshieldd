@@ -5,7 +5,7 @@ const wasteSchema = new mongoose.Schema(
     location: String,
     type: String,
     description: String,
-    image: String, // <--- ADD THIS LINE
+    image: String,
     status: {
       type: String,
       enum: ["scheduled", "done"],

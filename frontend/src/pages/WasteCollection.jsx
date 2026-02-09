@@ -7,6 +7,7 @@ import API from "../utils/api";
 const WasteCollection = () => {
   const [items, setItems] = useState([]);
 
+  // FETCH ALL
   const fetchWaste = async () => {
     try {
       const res = await API.get("/waste");
@@ -20,19 +21,18 @@ const WasteCollection = () => {
     fetchWaste();
   }, []);
 
-  // UPDATED: Now accepts the FormData object directly
+  // ADD NEW (WITH IMAGE)
   const addWaste = async (formData) => {
     try {
-      // You don't need to wrap this in { } because formData already contains 
-      // the location, type, description, and the image file.
       await API.post("/waste", formData);
       fetchWaste();
     } catch (err) {
       console.error("Error adding waste report:", err);
-      alert("Submission failed. Check your connection.");
+      alert("Submission failed");
     }
   };
 
+  // UPDATE STATUS
   const updateStatus = async (id, status) => {
     try {
       if (status === "scheduled") {
@@ -46,16 +46,45 @@ const WasteCollection = () => {
     }
   };
 
+  // DELETE ALL
+  const deleteAllWaste = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete ALL waste collection requests?"
+    );
+    if (!confirmDelete) return;
+
+    try {
+      await API.delete("/waste");
+      fetchWaste();
+    } catch (err) {
+      console.error("Delete all error:", err);
+      alert("Failed to delete waste requests");
+    }
+  };
+
   return (
-    <div className="page-bg">
-      <div className="main-card">
-        <Navbar />
-        <div className="waste-page">
+    <>
+      <Navbar />
+
+      {/* FULL SCREEN WASTE PAGE */}
+      <div className="waste-full">
+        <div className="waste-header">
+          <h2>Waste Collection Management</h2>
+          <p>Request, track, and manage waste collection with image evidence</p>
+
+          <div className="waste-actions">
+            <button className="danger-btn" onClick={deleteAllWaste}>
+              🗑️ Delete All Requests
+            </button>
+          </div>
+        </div>
+
+        <div className="waste-layout">
           <WasteForm onAdd={addWaste} />
           <WasteList items={items} onResolve={updateStatus} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

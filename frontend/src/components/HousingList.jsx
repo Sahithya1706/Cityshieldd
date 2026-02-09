@@ -21,7 +21,7 @@ const HousingList = ({ items, onUpdate }) => {
 
       <div className="hc-controls">
         <input
-          placeholder="Search..."
+          placeholder="Search by flat or issue..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

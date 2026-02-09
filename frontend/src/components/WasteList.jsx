@@ -4,7 +4,6 @@ const WasteList = ({ items, onResolve }) => {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
 
-  // Define the base URL for images
   const API_BASE_URL = "http://localhost:5000";
 
   const filtered = items.filter((w) => {
@@ -24,7 +23,7 @@ const WasteList = ({ items, onResolve }) => {
 
       <div className="waste-controls">
         <input
-          placeholder="Search..."
+          placeholder="Search by location or type..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -40,19 +39,15 @@ const WasteList = ({ items, onResolve }) => {
 
       {filtered.map((item) => (
         <div className="waste-card" key={item._id}>
-          {/* --- IMAGE SECTION START --- */}
           {item.image && (
-            <div className="waste-image-container">
-              <img 
-                src={`${API_BASE_URL}${item.image}`} 
-                alt="Waste evidence" 
-                className="waste-thumbnail"
-              />
-            </div>
+            <img
+              src={`${API_BASE_URL}${item.image}`}
+              alt="Waste"
+              className="waste-thumbnail"
+            />
           )}
-          {/* --- IMAGE SECTION END --- */}
 
-          <div className="waste-info">
+          <div>
             <h4>{item.type}</h4>
             <p>📍 {item.location}</p>
             {item.description && (

@@ -1,4 +1,6 @@
 const GeneralIssueList = ({ issues, onResolve, onDelete }) => {
+  const API_BASE = "http://localhost:5000";
+
   return (
     <div>
       <h3>Reported Issues</h3>
@@ -10,24 +12,18 @@ const GeneralIssueList = ({ issues, onResolve, onDelete }) => {
           <div>
             <h4>{item.title || "Untitled Issue"}</h4>
 
-            <p>
-              <strong>Category:</strong> {item.category}
-            </p>
-            <p>
-              <strong>Location:</strong> {item.location}
-            </p>
-            <p>
-              <strong>Severity:</strong> {item.severity}
-            </p>
+            <p><strong>Category:</strong> {item.category}</p>
+            <p><strong>Location:</strong> {item.location}</p>
+            <p><strong>Severity:</strong> {item.severity}</p>
 
             {item.description && (
               <p className="hc-desc">{item.description}</p>
             )}
 
-            {/* IMAGE DISPLAY */}
+            {/* ✅ IMAGE — CORRECT WAY */}
             {item.image && (
               <img
-                src={`http://localhost:5000/uploads/${item.image}`}
+                src={`${API_BASE}${item.image}`}
                 alt="Issue"
                 style={{
                   width: "100%",
@@ -45,7 +41,6 @@ const GeneralIssueList = ({ issues, onResolve, onDelete }) => {
               {item.status}
             </span>
 
-            {/* COMPLETE / RESOLVE */}
             {item.status !== "resolved" && (
               <button
                 className="resolve-btn"
@@ -55,7 +50,6 @@ const GeneralIssueList = ({ issues, onResolve, onDelete }) => {
               </button>
             )}
 
-            {/* DELETE */}
             <button
               className="delete-btn"
               onClick={() => onDelete(item._id)}

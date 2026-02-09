@@ -1,12 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import heroImg from "../assets/hero-city.png";
+import { useNavigate, Link } from "react-router-dom";
+import loginImg from "../assets/login-illustration.png";
 import { loginUser } from "../utils/auth";
 
 const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Dummy login (frontend only)
     loginUser({
       name: "Sahithya",
       email: "test@cityshield.com",
@@ -17,10 +16,11 @@ const Login = () => {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
+      <div className="auth-card login-card">
+
         {/* LEFT IMAGE */}
         <div className="auth-image">
-          <img src={heroImg} alt="City illustration" />
+          <img src={loginImg} alt="Login illustration" />
         </div>
 
         {/* RIGHT FORM */}
@@ -36,9 +36,10 @@ const Login = () => {
           </button>
 
           <p className="auth-link">
-            Don’t have an account? <a href="/signup">Sign up</a>
+            Don’t have an account? <Link to="/signup">Sign up</Link>
           </p>
         </div>
+
       </div>
     </div>
   );

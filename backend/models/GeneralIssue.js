@@ -10,6 +10,7 @@ const generalIssueSchema = new mongoose.Schema(
     image: String,
     status: {
       type: String,
+      enum: ["open", "resolved"],
       default: "open",
     },
   },

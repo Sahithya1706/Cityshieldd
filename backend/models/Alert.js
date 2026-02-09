@@ -4,12 +4,17 @@ const alertSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
-    severity: {
+    level: {
       type: String,
-      enum: ["High", "Medium", "Low"],
+      enum: ["high", "medium", "low"],
       required: true,
     },
-    location: String,
+    city: String,
+    status: {
+      type: String,
+      enum: ["open", "resolved"],
+      default: "open",
+    },
   },
   { timestamps: true }
 );

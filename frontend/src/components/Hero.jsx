@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import heroImg from "../assets/hero-city.png";
+import heroImg from "../assets/hero-city1.png";
+import { getUser } from "../utils/auth";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const user = getUser(); // 🔥 check login
 
   return (
-    <section className="hero">
+    <section className="hero full-hero">
       {/* LEFT CONTENT */}
       <div className="hero-left">
         <h1>
@@ -14,22 +16,29 @@ const Hero = () => {
         </h1>
 
         <p>
-          Explore real-time safety alerts, track incidents across the city,
-          and help authorities respond faster. CityShield makes urban safety
-          smarter and more transparent.
+          Explore real-time safety alerts, track incidents across the city, and
+          help authorities respond faster. CityShield makes urban safety smarter
+          and more transparent.
         </p>
 
-        <button
-          className="cta-btn"
-          onClick={() => navigate("/login")}
-        >
-          Get Started
-        </button>
+        {/* ✅ SHOW ONLY IF NOT LOGGED IN */}
+        {!user && (
+          <button
+            className="cta-btn"
+            onClick={() => navigate("/login")}
+          >
+            Get Started
+          </button>
+        )}
       </div>
 
       {/* RIGHT IMAGE */}
       <div className="hero-right">
-        <img src={heroImg} alt="CityShield city illustration" />
+        <img
+          src={heroImg}
+          alt="CityShield city safety illustration"
+          draggable="false"
+        />
       </div>
     </section>
   );

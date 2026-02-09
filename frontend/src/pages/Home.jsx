@@ -1,49 +1,52 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import FeatureCard from "../components/FeatureCard";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
-    <div className="page-bg">
-      <div className="main-card">
-        <Navbar />
-        <Hero />
+    <>
+      <Navbar />
 
-        {/* FEATURES SECTION */}
-        <section className="features-section">
-          <h2>How CityShield Helps</h2>
-          <p className="features-sub">
-            A smarter way to monitor, report, and respond to city safety issues
-          </p>
+      {/* FULL SCREEN HERO */}
+      <Hero />
 
-          <div className="features-grid">
-            <FeatureCard
-              icon="📍"
-              title="Report Issues"
-              desc="Citizens can report civic and safety issues with location details."
-            />
+      {/* FEATURES SECTION */}
+      <section className="features-section full-width">
+        <h2>How CityShield Helps</h2>
+        <p className="features-sub">
+          A smarter way to monitor, report, and respond to city safety issues
+        </p>
 
-            <FeatureCard
-              icon="🚨"
-              title="Live Alerts"
-              desc="Get real-time emergency alerts based on your area."
-            />
+        <div className="features-grid">
+          <FeatureCard
+            icon="📍"
+            title="Report Issues"
+            desc="Citizens can report civic and safety issues with location details."
+          />
 
-            <FeatureCard
-              icon="📊"
-              title="City Dashboard"
-              desc="Authorities track alerts, response status, and analytics."
-            />
+          <FeatureCard
+            icon="🚨"
+            title="Live Alerts"
+            desc="Get real-time emergency alerts based on your area."
+          />
 
-            <FeatureCard
-              icon="🗺️"
-              title="Safety Map"
-              desc="Heatmap showing high-risk and safe zones across the city."
-            />
-          </div>
-        </section>
-      </div>
-    </div>
+          <FeatureCard
+            icon="📊"
+            title="City Dashboard"
+            desc="Authorities track alerts, response status, and analytics."
+          />
+
+          <FeatureCard
+            icon="🗺️"
+            title="Safety Map"
+            desc="Heatmap showing high-risk and safe zones across the city."
+          />
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 };
 
