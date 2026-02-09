@@ -14,3 +14,19 @@ frontend/dist/
 frontend/build/
 backend/dist/
 backend/build/
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# uploads / user files
+uploads/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build
+dist/
