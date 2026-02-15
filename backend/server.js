@@ -22,6 +22,11 @@ const io = new Server(server, {
 });
 global.io = io;
 
+// ✅ ROOT ROUTE (JUST ADDED)
+app.get("/", (req, res) => {
+  res.send("CityShield Backend is running 🚀");
+});
+
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
